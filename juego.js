@@ -6,23 +6,23 @@ const preguntas = [
         respuestaCorrecta: "Lux" 
     },
     {
-        pregunta: "Si tuvieras que elegir una época de la historia para vivir, ¿cuál sería?",
-        opciones: ["Antiguo Egipto", "Edad Media", "El Renacimiento", "Futuro Distópico"],
-        respuestaCorrecta: "El Renacimiento" 
+        pregunta: "Si tuvieras que elegir un pais para vivir, ahi ¿cuál sería?",
+        opciones: ["ninguno", "india", "corea del norte", "venezuela"],
+        respuestaCorrecta: "ninguno"
     },
     {
-        pregunta: "Nuestro chiste interno favorito involucra a...",
-        opciones: ["Un pato", "Una tostadora", "El número 42", "Un fantasma"],
-        respuestaCorrecta: "Un pato" 
+        pregunta: "escoge la carita triste.",
+        opciones: [":C", "NO", "Por que?", "Tal vez"],
+        respuestaCorrecta: ":C" 
     },
     {
-        pregunta: "¿Cuál fue el primer lugar al que fuimos juntos?",
-        opciones: ["Parque Central", "Cafetería 'El Buen Rollo'", "Un cine", "La biblioteca"],
-        respuestaCorrecta: "Cafetería 'El Buen Rollo'" 
+        pregunta: "¿Cuanto es 2 + 2 ?",
+        opciones: ["1", "4", "7", "jeje"],
+        respuestaCorrecta: "4" 
     },
     {
-        pregunta: "Para una misión secreta, ¿qué objeto histórico me llevaría?",
-        opciones: ["La espada Excalibur", "El Libro de los Muertos", "La Piedra Rosetta", "Un mapa antiguo"],
+        pregunta: "cual esta bien escrito?",
+        opciones: ["El joven, cuyo talento era notorio para todos, ganó el premio literario este año.", "El joven cuyo talento era notorio para todos, ganó el premio literario este año.", "El joven, cuyo talento era notorio para todos ganó, el premio literario este año.", "El joven que su talento era notorio para todos, ganó el premio literario este año."],
         respuestaCorrecta: "La Piedra Rosetta"
     }
 ];
