@@ -1,8 +1,8 @@
 // --- DATOS DEL JUEGO PERSONALIZADOS (¡EDITA ESTO!) ---
 const preguntas = [
     {
-        pregunta: "¿Qué campeón MOBA me enseñaste a usar y ahora es mi favorito?",
-        opciones: ["Ashe", "Jhin", "Lux", "Zed"],
+        pregunta: "¿Que sigue_ AMOR DE MIS AMORES?",
+        opciones: ["Si dejaste de quererme", "Jhin", "Lux", "Zed"],
         respuestaCorrecta: "Lux" 
     },
     {
@@ -112,6 +112,9 @@ function manejarRespuesta(respuestaSeleccionada, respuestaCorrecta) {
 /**
  * Termina el juego (Victoria o Derrota).
  */
+/**
+ * Termina el juego (Victoria o Derrota).
+ */
 function terminarJuego(resultado) {
     // Ocultar la interfaz normal del juego
     document.querySelector('h1').style.display = 'none';
@@ -122,25 +125,9 @@ function terminarJuego(resultado) {
     document.body.style.backgroundColor = 'black'; // Fondo negro inmediatamente
 
     if (resultado === "victoria") {
-        document.body.innerHTML = `
-            <div style="text-align: center; color: #00ff88; padding-top: 100px;">
-                <h1>🎉 ¡VICTORIA ABSOLUTA! Has defendido el Nexo con una estrategia impecable.</h1>
-                <p style="font-size: 1.2em; margin: 30px auto;">
-                    ¡Felicidades! Este juego es solo una pequeña muestra de cuánto valoro tu inteligencia e ingenio.
-                    <br>
-                    Ahora, **presiona el botón de 'Continuar'** para recibir tu mensaje de celebración final.
-                </p>
-                <button onclick="iniciarSecuenciaTerror()" style="
-                    background-color: #e94560; color: white; padding: 15px 30px; 
-                    border: none; border-radius: 8px; cursor: pointer; font-size: 1.3em; 
-                    margin-top: 30px; font-weight: bold;
-                ">
-                    CONTINUAR
-                </button>
-            </div>
-        `;
+        // 💥 CAMBIO: Inicia la secuencia de terror inmediatamente
+        iniciarSecuenciaTerror(); 
     } 
-    // Si la función terminarJuego se llama con "derrota", se ejecuta este bloque:
     else { // Derrota (vidaNexo <= 0)
         document.body.innerHTML = `
             <div style="text-align: center; color: #ff0000; padding-top: 100px;">
@@ -150,14 +137,21 @@ function terminarJuego(resultado) {
             </div>
         `;
     }
-} // <-- ¡Esta llave cierra la función terminarJuego!
+}// <-- ¡Esta llave cierra la función terminarJuego!
 
 // --- NUEVAS FUNCIONES PARA LA SECUENCIA DE TERROR ---
 
 /**
  * Inicia la secuencia de terror con glitch y texto que se escribe.
  */
+/**
+ * Inicia la secuencia de terror con glitch y texto que se escribe.
+ */
 function iniciarSecuenciaTerror() {
+    
+    // 💥 NUEVA LÍNEA CRUCIAL: Limpia todo el contenido del body (incluyendo el mensaje de victoria)
+    document.body.innerHTML = '';
+    
     // 1. Iniciar sonido de estática (en loop)
     audioStatic = new Audio('static_sound.mp3'); 
     audioStatic.loop = true;
@@ -183,6 +177,7 @@ function iniciarSecuenciaTerror() {
     const textoAterrorizante = "Hola...\njejejeje.\nesto fue una prueba,\nte gusto?.\n:3.";
     escribirTextoLentamente(textoAterrorizante, 0);
 }
+
 
 /**
  * Escribe el texto caracter por caracter con sonido de escritura.
