@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>El Desafío Estratégico: ¡El Nexo te Espera!</title>
+    <style>
+        /* --- ESTILO MOBA / HISTORIA --- */
+        body { 
+            font-family: 'Georgia', serif; /* Tipo de letra más histórico */
+            background-color: #1a1a2e; /* Fondo oscuro, como un mapa de batalla */
+            color: #ffffff; /* Letras blancas */
+            text-align: center;
+            padding: 20px;
+        }
+
+        h1 {
+            color: #e94560; /* Color de acento */
+            border-bottom: 2px solid #e94560;
+            padding-bottom: 10px;
+        }
+
+        /* ESTADO DEL NEXO (Barra de Vida) */
+        #nexo-vida {
+            font-size: 20px;
+            font-weight: bold;
+            margin: 20px auto;
+            border: 3px solid #00ff88; /* Borde verde brillante */
+            padding: 15px;
+            width: 80%;
+            max-width: 400px;
+            background-color: #2c2c47;
+            border-radius: 8px;
+            transition: all 0.5s ease; /* Transición para cuando reciba daño */
+        }
+        
+        #nexo-vida.alerta {
+             /* Estilo cuando la vida es baja */
+            border-color: #ffcc00; 
+            color: #ffcc00;
+        }
+        
+        #nexo-vida.destruido {
+            border-color: #ff0000;
+            color: #ff0000;
+        }
+
+        /* CONTENEDOR DE PREGUNTAS */
+        #contenedor-pregunta {
+            background-color: #16213e;
+            padding: 30px;
+            border-radius: 10px;
+            margin: 30px auto;
+            max-width: 600px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+        }
+
+        #texto-pregunta {
+            font-size: 1.4em;
+            margin-bottom: 20px;
+            color: #aae0ff;
+        }
+
+        /* ESTILO DE OPCIONES (Botones de Estrategia) */
+        .opcion {
+            background-color: #3f72af; /* Color de botón principal */
+            color: #ffffff;
+            padding: 12px 25px;
+            margin: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            display: block; /* Opciones una debajo de la otra */
+            width: 90%;
+            margin-left: auto;
+            margin-right: auto;
+            transition: background-color 0.2s, transform 0.1s;
+        }
+
+        .opcion:hover { 
+            background-color: #1e3f6e; /* Un poco más oscuro al pasar el ratón */
+            transform: scale(1.02);
+        }
+        
+        /* RESULTADOS Y MENSAJES */
+        #mensaje-resultado {
+            font-size: 1.1em;
+            margin-top: 20px;
+            font-weight: bold;
+        }
+        
+        .mensaje-victoria { color: #00ff88; }
+        .mensaje-derrota { color: #ff0000; }
+        
+    </style>
+</head>
+<body>
+
+    <h1>⚔️ El Desafío de la Historia y la Estrategia 🛡️</h1>
+
+    <div id="nexo-vida">Vida del Nexo: 100</div>
+
+    <div id="contenedor-pregunta">
+        <p id="texto-pregunta">Cargando pregunta...</p>
+        <div id="contenedor-opciones">
+            </div>
+    </div>
+    
+    <p id="mensaje-resultado"></p>
+
+    <script src="juego.js"></script>
+</body>
+</html>
