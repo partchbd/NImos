@@ -109,13 +109,9 @@ function manejarRespuesta(respuestaSeleccionada, respuestaCorrecta) {
     }
 }
 
+// ... (Código hasta aquí: manejarRespuesta TERMINA CORRECTAMENTE con } )
+
 /**
- * Termina el juego (Victoria o Derrota).
- */
-/**
- * Termina el juego (Victoria o Derrota).
- */
-+/**
  * Termina el juego (Victoria o Derrota).
  */
 function terminarJuego(resultado) {
@@ -128,7 +124,7 @@ function terminarJuego(resultado) {
     document.body.style.backgroundColor = 'black'; // Fondo negro inmediatamente
 
     if (resultado === "victoria") {
-        // Restauramos el mensaje de victoria y el botón "CONTINUAR"
+        // Muestra el mensaje de victoria con el botón "CONTINUAR"
         document.body.innerHTML = `
             <div style="text-align: center; color: #00ff88; padding-top: 100px;">
                 <h1>🎉 ¡VICTORIA ABSOLUTA! Has defendido el Nexo con una estrategia impecable.</h1>
@@ -156,20 +152,16 @@ function terminarJuego(resultado) {
             </div>
         `;
     }
-}
-// <-- ¡Esta llave cierra la función terminarJuego!
+} // <--- Cierre de terminarJuego
 
 // --- NUEVAS FUNCIONES PARA LA SECUENCIA DE TERROR ---
 
 /**
  * Inicia la secuencia de terror con glitch y texto que se escribe.
  */
-/**
- * Inicia la secuencia de terror con glitch y texto que se escribe.
- */
 function iniciarSecuenciaTerror() {
     
-    // 💥 NUEVA LÍNEA CRUCIAL: Limpia todo el contenido del body (incluyendo el mensaje de victoria)
+    // 💥 LIMPIEZA: Elimina el mensaje de victoria antes de empezar el terror
     document.body.innerHTML = '';
     
     // 1. Iniciar sonido de estática (en loop)
@@ -196,13 +188,13 @@ function iniciarSecuenciaTerror() {
     // 4. Iniciar la escritura del texto con tu mensaje personalizado
     const textoAterrorizante = "Hola...\njejejeje.\nesto fue una prueba,\nte gusto?.\n:3.";
     escribirTextoLentamente(textoAterrorizante, 0);
-}
+} // <--- Cierre de iniciarSecuenciaTerror
 
 
 /**
- * Escribe el texto caracter por caracter con sonido de escritura.
+ * Escribe el texto caracter por caracter con sonido de escritura y limpia al final.
  */
-function escribirTextoLentamente(texto, index) { // <-- ¡Solo una definición!
+function escribirTextoLentamente(texto, index) {
     if (index < texto.length) {
         mensajeTerrorEl.textContent += texto.charAt(index);
         
@@ -217,11 +209,15 @@ function escribirTextoLentamente(texto, index) { // <-- ¡Solo una definición!
             escribirTextoLentamente(texto, index + 1);
         }, 100); 
     } else { 
-        // Cuando el texto termina, pausamos la estática
+        // 5 segundos de pausa para leer el mensaje, luego apagar
         setTimeout(() => {
+            // 1. Pausar la estática
             if (audioStatic) {
                 audioStatic.pause(); 
             }
+            // 2. Eliminar el texto de la pantalla y el efecto glitch
+            document.body.innerHTML = ''; // Deja la pantalla vacía
+            document.body.classList.remove('glitch-effect'); // Quita el efecto visual
         }, 5000); 
     }
 } // <-- Cierre de escribirTextoLentamente
