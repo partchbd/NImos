@@ -92,20 +92,6 @@
         .mensaje-victoria { color: #00ff88; }
         .mensaje-derrota { color: #ff0000; }
         
-        /* 1. Define la animación que se aplica a toda la pantalla */
-        @keyframes backgroundGlitch {
-            0% { transform: translate(0, 0); }
-            20% { transform: translate(-2px, 2px); filter: hue-rotate(50deg); }
-            40% { transform: translate(2px, -2px); }
-            60% { transform: translate(-1px, 1px); filter: hue-rotate(100deg); }
-            80% { transform: translate(1px, -1px); }
-            100% { transform: translate(0, 0); }
-        }
-
-        /* 2. Aplica la animación al cuerpo (body) cuando tiene la clase 'glitch-effect' */
-        body.glitch-effect {
-            animation: backgroundGlitch 5s infinite linear;
-        }
     </style>
 </head>
 <body>
