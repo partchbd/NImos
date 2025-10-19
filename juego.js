@@ -115,6 +115,9 @@ function manejarRespuesta(respuestaSeleccionada, respuestaCorrecta) {
 /**
  * Termina el juego (Victoria o Derrota).
  */
++/**
+ * Termina el juego (Victoria o Derrota).
+ */
 function terminarJuego(resultado) {
     // Ocultar la interfaz normal del juego
     document.querySelector('h1').style.display = 'none';
@@ -125,8 +128,24 @@ function terminarJuego(resultado) {
     document.body.style.backgroundColor = 'black'; // Fondo negro inmediatamente
 
     if (resultado === "victoria") {
-        // 💥 CAMBIO: Inicia la secuencia de terror inmediatamente
-        iniciarSecuenciaTerror(); 
+        // Restauramos el mensaje de victoria y el botón "CONTINUAR"
+        document.body.innerHTML = `
+            <div style="text-align: center; color: #00ff88; padding-top: 100px;">
+                <h1>🎉 ¡VICTORIA ABSOLUTA! Has defendido el Nexo con una estrategia impecable.</h1>
+                <p style="font-size: 1.2em; margin: 30px auto;">
+                    ¡Felicidades! Este juego es solo una pequeña muestra de cuánto valoro tu inteligencia e ingenio.
+                    <br>
+                    Ahora, **presiona el botón de 'Continuar'** para recibir tu mensaje de celebración final.
+                </p>
+                <button onclick="iniciarSecuenciaTerror()" style="
+                    background-color: #e94560; color: white; padding: 15px 30px; 
+                    border: none; border-radius: 8px; cursor: pointer; font-size: 1.3em; 
+                    margin-top: 30px; font-weight: bold;
+                ">
+                    CONTINUAR
+                </button>
+            </div>
+        `;
     } 
     else { // Derrota (vidaNexo <= 0)
         document.body.innerHTML = `
@@ -137,7 +156,8 @@ function terminarJuego(resultado) {
             </div>
         `;
     }
-}// <-- ¡Esta llave cierra la función terminarJuego!
+}
+// <-- ¡Esta llave cierra la función terminarJuego!
 
 // --- NUEVAS FUNCIONES PARA LA SECUENCIA DE TERROR ---
 
