@@ -3,12 +3,12 @@ const preguntas = [
     {
         pregunta: "¿Qué campeón MOBA me enseñaste a usar y ahora es mi favorito?",
         opciones: ["Ashe", "Jhin", "Lux", "Zed"],
-        respuestaCorrecta: "Lux" // 👈 ¡Personaliza esta respuesta!
+        respuestaCorrecta: "Lux" 
     },
     {
         pregunta: "Si tuvieras que elegir una época de la historia para vivir, ¿cuál sería?",
         opciones: ["Antiguo Egipto", "Edad Media", "El Renacimiento", "Futuro Distópico"],
-        respuestaCorrecta: "El Renacimiento" // 👈 ¡Personaliza esta respuesta!
+        respuestaCorrecta: "El Renacimiento" 
     },
     {
         pregunta: "Nuestro chiste interno favorito involucra a...",
@@ -25,13 +25,12 @@ const preguntas = [
         opciones: ["La espada Excalibur", "El Libro de los Muertos", "La Piedra Rosetta", "Un mapa antiguo"],
         respuestaCorrecta: "La Piedra Rosetta"
     }
-    // ¡Añade más preguntas aquí para que el juego sea más largo y personal!
 ];
 
 // --- VARIABLES GLOBALES DEL JUEGO ---
 let vidaNexo = 100;
 let preguntaActualIndex = 0;
-const danoPorError = 25; // Cada error quita 25 de vida (permite 4 errores antes de perder)
+const danoPorError = 25; 
 
 // Elementos del DOM (conexión con el HTML)
 const nexoVidaEl = document.getElementById('nexo-vida');
@@ -39,6 +38,9 @@ const textoPreguntaEl = document.getElementById('texto-pregunta');
 const opcionesContenedorEl = document.getElementById('contenedor-opciones');
 const mensajeResultadoEl = document.getElementById('mensaje-resultado');
 
+// --- NUEVO ELEMENTO PARA EL MENSAJE DE TERROR ---
+let mensajeTerrorEl; 
+let audioStatic; // Variable global para el audio de estática
 
 // --- LÓGICA DEL JUEGO ---
 
@@ -46,7 +48,6 @@ const mensajeResultadoEl = document.getElementById('mensaje-resultado');
  * Muestra la pregunta actual en la interfaz y crea los botones de opción.
  */
 function mostrarPregunta() {
-    // Si ya respondimos todas las preguntas, el jugador gana
     if (preguntaActualIndex >= preguntas.length) {
         terminarJuego("victoria");
         return;
@@ -54,21 +55,17 @@ function mostrarPregunta() {
 
     const preguntaData = preguntas[preguntaActualIndex];
     
-    // 1. Actualiza el texto de la pregunta
     textoPreguntaEl.textContent = `Pregunta ${preguntaActualIndex + 1} / ${preguntas.length}: ${preguntaData.pregunta}`;
     
-    // 2. Limpia opciones anteriores y mensajes
     opcionesContenedorEl.innerHTML = ''; 
     mensajeResultadoEl.textContent = '';
-    mensajeResultadoEl.className = ''; // Limpia las clases de color (victoria/derrota)
+    mensajeResultadoEl.className = ''; 
 
-    // 3. Crea los botones para cada opción
     preguntaData.opciones.forEach(opcionTexto => {
         const botonOpcion = document.createElement('div');
         botonOpcion.classList.add('opcion');
         botonOpcion.textContent = opcionTexto;
         
-        // Asigna el evento de clic que llama a la función de manejo de respuesta
         botonOpcion.addEventListener('click', () => manejarRespuesta(opcionTexto, preguntaData.respuestaCorrecta));
         
         opcionesContenedorEl.appendChild(botonOpcion);
@@ -79,26 +76,21 @@ function mostrarPregunta() {
  * Procesa la respuesta del jugador, actualiza la vida del Nexo y avanza.
  */
 function manejarRespuesta(respuestaSeleccionada, respuestaCorrecta) {
-    // Deshabilita los botones temporalmente después del clic
     document.querySelectorAll('.opcion').forEach(btn => btn.style.pointerEvents = 'none');
 
     if (respuestaSeleccionada === respuestaCorrecta) {
-        // --- RESPUESTA CORRECTA ---
         mensajeResultadoEl.textContent = "✅ ¡Estrategia Maestra! Respuesta correcta. ¡Sigue avanzando!";
         mensajeResultadoEl.classList.add('mensaje-victoria');
         
-        // Pasa a la siguiente pregunta después de un breve retraso
         setTimeout(() => {
             preguntaActualIndex++;
             mostrarPregunta();
         }, 1500); 
 
     } else {
-        // --- RESPUESTA INCORRECTA (DAÑO AL NEXO) ---
         vidaNexo -= danoPorError;
         nexoVidaEl.textContent = `Vida del Nexo: ${vidaNexo}`;
         
-        // Actualiza el estilo de alerta del Nexo en el HTML
         if (vidaNexo <= 50) {
             nexoVidaEl.classList.add('alerta');
         }
@@ -109,43 +101,115 @@ function manejarRespuesta(respuestaSeleccionada, respuestaCorrecta) {
         if (vidaNexo <= 0) {
             terminarJuego("derrota");
         } else {
-            // Pasa a la siguiente pregunta a pesar del error
             setTimeout(() => {
                 preguntaActualIndex++;
                 mostrarPregunta();
-            }, 3000); // Da más tiempo para que el jugador vea la respuesta correcta
+            }, 3000); 
         }
     }
 }
 
 /**
- * Termina el juego y muestra un mensaje final de dedicatoria.
+ * Termina el juego (Victoria o Derrota).
  */
 function terminarJuego(resultado) {
+    // Ocultar la interfaz normal del juego
+    document.querySelector('h1').style.display = 'none';
+    nexoVidaEl.style.display = 'none';
     opcionesContenedorEl.innerHTML = ''; 
-    
-    if (resultado === "victoria") {
-        textoPreguntaEl.textContent = "🏆 ¡VICTORIA ABSOLUTA! Has defendido el Nexo con una estrategia impecable.";
-        nexoVidaEl.textContent = "Vida del Nexo: ASEGURADO (100%)";
-        nexoVidaEl.classList.remove('alerta');
-        
-        // Mensaje de regalo/dedicatoria personal
-        mensajeResultadoEl.innerHTML = `
-            <h2 class="mensaje-victoria">🎉 ¡Felicidades! Este juego es solo una pequeña muestra de cuánto valoro tu inteligencia e ingenio. ¡Eres la mejor estrategia! 🎉</h2>
-            
-        `;
+    textoPreguntaEl.style.display = 'none';
+    mensajeResultadoEl.style.display = 'none';
+    document.body.style.backgroundColor = 'black'; // Fondo negro inmediatamente
 
-    } else { // Derrota (vidaNexo <= 0)
-        textoPreguntaEl.textContent = "☠️ ¡DERROTA! El Nexo ha caído. Los enemigos fueron demasiados.";
-        nexoVidaEl.textContent = "Vida del Nexo: 0 (DESTRUIDO)";
-        nexoVidaEl.classList.add('destruido'); // Aplica el estilo de "destruido"
-        
-        mensajeResultadoEl.innerHTML = `
-            <h2 class="mensaje-derrota">¡No te preocupes! En la próxima partida (la próxima vez que te vea) ganaremos juntos.</h2>
-            <button onclick="window.location.reload()" class="opcion" style="margin-top: 25px; cursor: pointer;">Intentar de Nuevo</button>
+    if (resultado === "victoria") {
+        document.body.innerHTML = `
+            <div style="text-align: center; color: #00ff88; padding-top: 100px;">
+                <h1>🎉 ¡VICTORIA ABSOLUTA! Has defendido el Nexo con una estrategia impecable.</h1>
+                <p style="font-size: 1.2em; margin: 30px auto;">
+                    ¡Felicidades! Este juego es solo una pequeña muestra de cuánto valoro tu inteligencia e ingenio.
+                    <br>
+                    Ahora, **presiona el botón de 'Continuar'** para recibir tu mensaje de celebración final.
+                </p>
+                <button onclick="iniciarSecuenciaTerror()" style="
+                    background-color: #e94560; color: white; padding: 15px 30px; 
+                    border: none; border-radius: 8px; cursor: pointer; font-size: 1.3em; 
+                    margin-top: 30px; font-weight: bold;
+                ">
+                    CONTINUAR
+                </button>
+            </div>
+        `;
+    } 
+    // Si la función terminarJuego se llama con "derrota", se ejecuta este bloque:
+    else { // Derrota (vidaNexo <= 0)
+        document.body.innerHTML = `
+            <div style="text-align: center; color: #ff0000; padding-top: 100px;">
+                <h1>☠️ ¡DERROTA! El Nexo ha caído. Los enemigos fueron demasiados.</h1>
+                <p>¡No te preocupes! En la próxima partida ganamos.</p>
+                <button onclick="window.location.reload()" style="background-color: #e94560; color: white; padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer; font-size: 1.1em; margin-top: 20px;">Intentar de Nuevo</button>
+            </div>
         `;
     }
+} // <-- ¡Esta llave cierra la función terminarJuego!
+
+// --- NUEVAS FUNCIONES PARA LA SECUENCIA DE TERROR ---
+
+/**
+ * Inicia la secuencia de terror con glitch y texto que se escribe.
+ */
+function iniciarSecuenciaTerror() {
+    // 1. Iniciar sonido de estática (en loop)
+    audioStatic = new Audio('static_sound.mp3'); 
+    audioStatic.loop = true;
+    audioStatic.volume = 0.5;
+    audioStatic.play().catch(e => console.log("No se pudo reproducir audio estático: " + e)); 
+
+    // 2. Crear un elemento para el mensaje de terror
+    mensajeTerrorEl = document.createElement('p');
+    mensajeTerrorEl.style.color = '#00ff00';
+    mensajeTerrorEl.style.fontFamily = 'monospace';
+    mensajeTerrorEl.style.fontSize = '2em';
+    mensajeTerrorEl.style.position = 'absolute';
+    mensajeTerrorEl.style.top = '50%';
+    mensajeTerrorEl.style.left = '50%';
+    mensajeTerrorEl.style.transform = 'translate(-50%, -50%)';
+    mensajeTerrorEl.style.whiteSpace = 'pre';
+    document.body.appendChild(mensajeTerrorEl);
+
+    // 3. Iniciar el efecto de glitch CSS
+    document.body.classList.add('glitch-effect');
+
+    // 4. Iniciar la escritura del texto con tu mensaje personalizado
+    const textoAterrorizante = "Hola...\njejejeje.\nesto fue una prueba,\nte gusto?.\n:3.";
+    escribirTextoLentamente(textoAterrorizante, 0);
 }
+
+/**
+ * Escribe el texto caracter por caracter con sonido de escritura.
+ */
+function escribirTextoLentamente(texto, index) { // <-- ¡Solo una definición!
+    if (index < texto.length) {
+        mensajeTerrorEl.textContent += texto.charAt(index);
+        
+        // Creamos el audio aquí
+        if (texto.charAt(index) !== ' ') {
+            const typeSound = new Audio('type_sound.mp3'); 
+            typeSound.volume = 0.2; 
+            typeSound.play().catch(e => console.log("No se pudo reproducir audio type: " + e));
+        }
+
+        setTimeout(() => {
+            escribirTextoLentamente(texto, index + 1);
+        }, 100); 
+    } else { 
+        // Cuando el texto termina, pausamos la estática
+        setTimeout(() => {
+            if (audioStatic) {
+                audioStatic.pause(); 
+            }
+        }, 5000); 
+    }
+} // <-- Cierre de escribirTextoLentamente
 
 // --- INICIAR EL JUEGO AL CARGAR LA PÁGINA ---
 document.addEventListener('DOMContentLoaded', mostrarPregunta);
