@@ -187,7 +187,7 @@ function iniciarSecuenciaTerror() {
     document.body.classList.add('glitch-effect');
 
     // 4. Iniciar la escritura del texto con tu mensaje personalizado
-    const textoAterrorizante = "Hola...\njejejeje.\nesto fue una prueba,\nte gusto?.\n:3.\n aun le fata...";
+    const textoAterrorizante = "Hola...\njijijiji.\nesto fue una prueba,\nte gusto?.\n:3.\n aun le fata...";
     escribirTextoLentamente(textoAterrorizante, 0);
 } // <--- Cierre de iniciarSecuenciaTerror
 
