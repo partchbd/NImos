@@ -1,8 +1,8 @@
-// --- DATOS DEL JUEGO PERSONALIZADOS (¡EDITA ESTO!) ---
+// --- DATOS DEL JUEGO PERSONALIZADOS 
 const preguntas = [
     {
-        pregunta: "¿Que sigue_ AMOR DE MIS AMORES?",
-        opciones: ["Si dejaste de quererme", "Jhin", "Lux", "Zed"],
+        pregunta: "¿HOLA?",
+        opciones: ["...", "HOLA", "?",],
         respuestaCorrecta: "Lux" 
     },
     {
