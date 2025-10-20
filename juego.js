@@ -161,7 +161,8 @@ function terminarJuego(resultado) {
  */
 function iniciarSecuenciaTerror() {
     
-    // 💥 LIMPIEZA: Elimina el mensaje de victoria antes de empezar el terror
+    document.body.style.backgroundImage = 'none'; 
+    document.body.style.backgroundColor = 'black'; 
     document.body.innerHTML = '';
     
     // 1. Iniciar sonido de estática (en loop)
@@ -186,7 +187,7 @@ function iniciarSecuenciaTerror() {
     document.body.classList.add('glitch-effect');
 
     // 4. Iniciar la escritura del texto con tu mensaje personalizado
-    const textoAterrorizante = "Hola...\njejejeje.\nesto fue una prueba,\nte gusto?.\n:3.";
+    const textoAterrorizante = "Hola...\njejejeje.\nesto fue una prueba,\nte gusto?.\n:3.\n aun le fata...";
     escribirTextoLentamente(textoAterrorizante, 0);
 } // <--- Cierre de iniciarSecuenciaTerror
 
