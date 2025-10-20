@@ -3,12 +3,12 @@ const preguntas = [
     {
         pregunta: "¿HOLA?",
         opciones: ["...", "HOLA", "?",],
-        respuestaCorrecta: "Lux" 
+        respuestaCorrecta: "?" 
     },
     {
         pregunta: "Si tuvieras que elegir un pais para vivir, ahi ¿cuál sería?",
-        opciones: ["ninguno", "india", "corea del norte", "venezuela"],
-        respuestaCorrecta: "ninguno"
+        opciones: ["NINGUNO", "india", "corea del norte", "venezuela"],
+        respuestaCorrecta: "NINGUNO"
     },
     {
         pregunta: "escoge la carita triste.",
@@ -23,7 +23,7 @@ const preguntas = [
     {
         pregunta: "cual esta bien escrito?",
         opciones: ["El joven, cuyo talento era notorio para todos, ganó el premio literario este año.", "El joven cuyo talento era notorio para todos, ganó el premio literario este año.", "El joven, cuyo talento era notorio para todos ganó, el premio literario este año.", "El joven que su talento era notorio para todos, ganó el premio literario este año."],
-        respuestaCorrecta: "La Piedra Rosetta"
+        respuestaCorrecta: "El joven, cuyo talento era notorio para todos, ganó el premio literario este año."
     }
 ];
 
